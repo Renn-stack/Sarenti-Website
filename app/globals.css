@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Sarenti brand tokens — kept in sync with tailwind.config.ts */
+  --sarenti-primary: #902376;
+  --sarenti-secondary: #c671a5;
+  --sarenti-light: #eed6e8;
+  --sarenti-ink: #221b20;
+  --sarenti-paper: #ffffff;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html,
+body {
+  background-color: var(--sarenti-paper);
+  color: var(--sarenti-ink);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible focus states for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--sarenti-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Utility for the eyebrow / kicker labels used across sections */
+.kicker {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--sarenti-primary);
+}
