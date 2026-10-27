@@ -45,15 +45,23 @@ export const metadata: Metadata = {
   },
 };
 
-// Basic LocalBusiness structured data — intentionally omits a street
-// address, since Sarenti shares its location privately via WhatsApp.
+// Basic LocalBusiness structured data.
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   name: siteConfig.name,
   description:
     "Clínica de medicina estética con cámara hiperbárica, tratamientos faciales, corporales y de bienestar.",
-  openingHours: "Mo-Fr 08:00-15:00",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "15 de Mayo 15, Col. Francisco I. Madero",
+    postalCode: "72130",
+    addressLocality: "Heroica Puebla de Zaragoza",
+    addressRegion: "Pue.",
+    addressCountry: "MX",
+  },
+  telephone: `+${siteConfig.whatsappNumber}`,
+  openingHours: ["Mo-Fr 09:00-17:00", "Sa 08:00-15:00"],
   sameAs: [siteConfig.instagramUrl],
 };
 

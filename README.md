@@ -66,21 +66,25 @@ Edit `data/site.ts`:
 
 ```ts
 whatsappNumber: "522221003094", // digits only, international format
-whatsappDisplay: "+52 222 100 3094", // what's shown to users
+whatsappDisplay: "222 100 3094", // what's shown to users
 ```
 
 Every WhatsApp button on the site (nav, floating button, sticky mobile
 bar, every service card, hero, final CTA) reads from this one value via
 `lib/whatsapp.ts` — there is nothing else to update.
 
-### Update Instagram, hours, or the default WhatsApp message
+### Update Instagram, hours, address, or the default WhatsApp message
 
 Also in `data/site.ts`:
 
 ```ts
 instagramHandle: "@drasarenti",
 instagramUrl: "https://instagram.com/drasarenti",
-hours: "8:00 a.m. – 3:00 p.m.",
+hours: [
+  "Lunes a viernes: 9:00 a.m. – 5:00 p.m.",
+  "Sábado: 8:00 a.m. – 3:00 p.m.",
+],
+address: "15 de Mayo 15, Col. Francisco I. Madero, 72130 Heroica Puebla de Zaragoza, Pue.",
 defaultWhatsAppMessage: "Hola, vi la página de Sarenti y quisiera agendar una cita.",
 ```
 
@@ -95,15 +99,15 @@ Edit `data/services.ts`. Each service is a plain object:
   name: "Hydrafacial",
   category: "faciales",
   shortDescription: "En una sola sesión se limpia, exfolia e hidrata la piel.",
-  featured: true, // shows on the homepage highlight grid
+  price: "$1,500", // optional, shown on the homepage highlight grid
   whatsappMessage: "Hola, quisiera información sobre Hydrafacial.",
 }
 ```
 
 - `category` must be one of: `camara-hiperbarica`, `faciales`,
   `corporales`, `especializados`, `masajes`.
-- **Never add a `price` field.** Prices are intentionally not shown
-  anywhere on the site.
+- To change which services appear on the homepage highlight grid (and
+  their order), edit `featuredServiceIds` at the bottom of the file.
 - `slug` is reserved for a future dedicated route
   (`/tratamientos/[slug]`) — not wired up yet, but keeps the data ready.
 
@@ -111,12 +115,13 @@ Edit `data/services.ts`. Each service is a plain object:
 
 Edit `data/faqs.ts` — a simple array of `{ question, answer }`.
 
-### Replace testimonials
+### Testimonials
 
-Edit `data/testimonials.ts`. **The current entries are placeholders**
-(clearly marked `isPlaceholder: true` and with `PLACEHOLDER TESTIMONIAL`
-in the text) — replace them with real, verified client reviews before
-launch. Never present placeholder content as genuine.
+The Testimonios section (`components/sections/TestimonialsSection.tsx`)
+currently shows a short message and a link to Sarenti's Google reviews
+instead of individual testimonials. Update the link via
+`googleReviewsUrl` in `data/site.ts`. Only add real, verified client
+reviews if testimonials are shown on the page again.
 
 ### Update the "Sobre Sarenti" / doctor bio section
 
@@ -221,21 +226,20 @@ not the base palette.
 
 - Metadata + Open Graph + Twitter card in `app/layout.tsx`
 - `app/robots.ts` and `app/sitemap.ts`
-- Basic `MedicalBusiness` JSON-LD structured data (no public street
-  address, matching the site's privacy approach to location)
+- Basic `MedicalBusiness` JSON-LD structured data (address, phone and
+  opening hours — keep them in sync with `data/site.ts`)
 
 ## Medical & content safety notes
 
-- No prices are shown anywhere — do not add any.
-- No street address is shown anywhere — location is shared privately via
-  WhatsApp once an appointment is confirmed.
+- Prices are shown only on the homepage highlight grid ("Lo más
+  buscado en Sarenti"), from the `price` field in `data/services.ts`.
 - No credentials beyond "Dra. Gabriela Ponce" are stated anywhere; the
   About section has a clear `TODO` for adding verified credentials later.
 - Hyperbaric chamber copy avoids absolute medical claims ("cura",
   "garantiza", etc.) and includes an explicit notice to consult the
   doctor before booking.
-- Testimonials are clearly marked as placeholders until replaced with
-  real reviews.
+- No testimonials are invented; the Testimonios section links to
+  Sarenti's Google reviews instead.
 
 ---
 

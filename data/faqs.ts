@@ -36,7 +36,7 @@ export const faqs: Faq[] = [
   {
     question: "¿Dónde se encuentra Sarenti?",
     answer:
-      "Por seguridad y privacidad, la ubicación exacta se proporciona al confirmar tu cita por WhatsApp.",
+      "Estamos en 15 de Mayo 15, Col. Francisco I. Madero, 72130 Heroica Puebla de Zaragoza, Pue.",
   },
   {
     question: "¿Qué debo hacer antes de mi sesión?",

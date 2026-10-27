@@ -4,13 +4,14 @@ import WhatsAppCTA from "./WhatsAppCTA";
 interface ServiceCardProps {
   service: Service;
   showCategory?: boolean;
+  showPrice?: boolean;
 }
 
 /**
- * Minimal, scannable card: name, one short line, optional category tag,
- * and a WhatsApp CTA pre-filled with the treatment name.
+ * Minimal, scannable card: name, one short line, optional category tag
+ * and price, and a WhatsApp CTA pre-filled with the treatment name.
  */
-export default function ServiceCard({ service, showCategory }: ServiceCardProps) {
+export default function ServiceCard({ service, showCategory, showPrice }: ServiceCardProps) {
   return (
     <div className="flex h-full flex-col rounded-xl2 border border-sarenti-ink/10 bg-white p-6 shadow-soft transition-transform duration-200 hover:-translate-y-1">
       {showCategory && (
@@ -22,6 +23,11 @@ export default function ServiceCard({ service, showCategory }: ServiceCardProps)
       <p className="mt-2 flex-1 text-sm leading-relaxed text-sarenti-ink/70">
         {service.shortDescription}
       </p>
+      {showPrice && service.price && (
+        <p className="mt-4 font-serif text-2xl text-sarenti-primary">
+          {service.price}
+        </p>
+      )}
       <WhatsAppCTA
         message={service.whatsappMessage}
         variant="outline"
