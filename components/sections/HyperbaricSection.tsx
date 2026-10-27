@@ -98,7 +98,7 @@ export default function HyperbaricSection() {
               bienestar general.
             </p>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-white/70">
-              Es un servicio cada vez más buscado por personas que quieren:
+              Es un servicio buscado por personas que quieren:
             </p>
 
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
