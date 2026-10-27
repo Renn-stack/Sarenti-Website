@@ -31,5 +31,9 @@ export const siteConfig = {
   defaultWhatsAppMessage:
     "Hola, vi la página de Sarenti y quisiera agendar una cita.",
 
+  // Used by the Contacto section's WhatsApp button and phone link.
+  contactWhatsAppMessage:
+    "Hola, vi la página de Sarenti y me gustaría agendar una cita o pedir más información.",
+
   url: "https://sarenti.example.com", // TODO: replace with the real production domain
 } as const;

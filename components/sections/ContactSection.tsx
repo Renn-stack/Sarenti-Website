@@ -22,7 +22,7 @@ const infoItems: Array<{
     icon: MessageCircle,
     label: "Teléfono / WhatsApp",
     value: [siteConfig.whatsappDisplay],
-    href: buildWhatsAppLink(siteConfig.defaultWhatsAppMessage),
+    href: buildWhatsAppLink(siteConfig.contactWhatsAppMessage),
   },
   {
     icon: Clock,
@@ -42,7 +42,7 @@ export default function ContactSection() {
 
         <FadeIn>
           <div className="mt-10 flex justify-center">
-            <WhatsAppCTA message={siteConfig.defaultWhatsAppMessage} size="lg">
+            <WhatsAppCTA message={siteConfig.contactWhatsAppMessage} size="lg">
               Agendar por WhatsApp
             </WhatsAppCTA>
           </div>
