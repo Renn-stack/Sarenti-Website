@@ -21,6 +21,10 @@ export const siteConfig = {
   // Location is intentionally not public. Shared privately via WhatsApp.
   locationNotice: "Ubicación disponible al agendar por WhatsApp.",
 
+  // TODO: replace with Sarenti's own Google Maps reviews link
+  // (Google Business Profile → "Compartir" / "Pedir reseñas").
+  googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Sarenti",
+
   defaultWhatsAppMessage:
     "Hola, vi la página de Sarenti y quisiera agendar una cita.",
 

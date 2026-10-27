@@ -111,12 +111,13 @@ Edit `data/services.ts`. Each service is a plain object:
 
 Edit `data/faqs.ts` — a simple array of `{ question, answer }`.
 
-### Replace testimonials
+### Testimonials
 
-Edit `data/testimonials.ts`. **The current entries are placeholders**
-(clearly marked `isPlaceholder: true` and with `PLACEHOLDER TESTIMONIAL`
-in the text) — replace them with real, verified client reviews before
-launch. Never present placeholder content as genuine.
+The Testimonios section (`components/sections/TestimonialsSection.tsx`)
+currently shows a short message and a link to Sarenti's Google reviews
+instead of individual testimonials. Update the link via
+`googleReviewsUrl` in `data/site.ts`. Only add real, verified client
+reviews if testimonials are shown on the page again.
 
 ### Update the "Sobre Sarenti" / doctor bio section
 
@@ -234,8 +235,8 @@ not the base palette.
 - Hyperbaric chamber copy avoids absolute medical claims ("cura",
   "garantiza", etc.) and includes an explicit notice to consult the
   doctor before booking.
-- Testimonials are clearly marked as placeholders until replaced with
-  real reviews.
+- No testimonials are invented; the Testimonios section links to
+  Sarenti's Google reviews instead.
 
 ---
 
