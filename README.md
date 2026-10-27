@@ -99,15 +99,15 @@ Edit `data/services.ts`. Each service is a plain object:
   name: "Hydrafacial",
   category: "faciales",
   shortDescription: "En una sola sesión se limpia, exfolia e hidrata la piel.",
-  featured: true, // shows on the homepage highlight grid
+  price: "$1,500", // optional, shown on the homepage highlight grid
   whatsappMessage: "Hola, quisiera información sobre Hydrafacial.",
 }
 ```
 
 - `category` must be one of: `camara-hiperbarica`, `faciales`,
   `corporales`, `especializados`, `masajes`.
-- **Never add a `price` field.** Prices are intentionally not shown
-  anywhere on the site.
+- To change which services appear on the homepage highlight grid (and
+  their order), edit `featuredServiceIds` at the bottom of the file.
 - `slug` is reserved for a future dedicated route
   (`/tratamientos/[slug]`) — not wired up yet, but keeps the data ready.
 
@@ -231,7 +231,8 @@ not the base palette.
 
 ## Medical & content safety notes
 
-- No prices are shown anywhere — do not add any.
+- Prices are shown only on the homepage highlight grid ("Lo más
+  buscado en Sarenti"), from the `price` field in `data/services.ts`.
 - No credentials beyond "Dra. Gabriela Ponce" are stated anywhere; the
   About section has a clear `TODO` for adding verified credentials later.
 - Hyperbaric chamber copy avoids absolute medical claims ("cura",

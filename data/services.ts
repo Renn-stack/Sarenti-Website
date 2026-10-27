@@ -5,8 +5,8 @@
  * site. Adding, renaming, or re-categorizing a service only requires
  * editing this file — no JSX changes needed.
  *
- * NOTE: Prices are intentionally never included. Do not add a `price`
- * field to this data structure.
+ * `price` is optional and only shown on the homepage highlight grid
+ * (see `featuredServiceIds` below for which services appear there).
  *
  * `slug` values are reserved for future routes such as
  * /tratamientos/hydrafacial — not wired up yet, but present so the
@@ -26,7 +26,8 @@ export interface Service {
   name: string;
   category: ServiceCategory;
   shortDescription: string;
-  featured?: boolean;
+  /** Display price, e.g. "$3,500" or "Consultar". */
+  price?: string;
   /** Message pre-filled into the WhatsApp chat when this service's CTA is used. */
   whatsappMessage: string;
 }
@@ -55,8 +56,8 @@ export const services: Service[] = [
     name: "Cámara Hiperbárica",
     category: "camara-hiperbarica",
     shortDescription:
-      "Sesiones de oxigenación pensadas para apoyar la recuperación y el bienestar general.",
-    featured: true,
+      "Recuperación, oxigenación y bienestar en un ambiente de presión controlada.",
+    price: "Consultar",
     whatsappMessage:
       "Hola, vi la página de Sarenti y quisiera información sobre la Cámara Hiperbárica.",
   },
@@ -68,7 +69,6 @@ export const services: Service[] = [
     name: "Limpieza Facial Profunda",
     category: "faciales",
     shortDescription: "Limpieza a fondo para una piel visiblemente más fresca.",
-    featured: true,
     whatsappMessage: "Hola, quisiera información sobre Limpieza Facial Profunda.",
   },
   {
@@ -100,7 +100,9 @@ export const services: Service[] = [
     slug: "bb-glow",
     name: "BB Glow",
     category: "faciales",
-    shortDescription: "Técnica para una piel con aspecto uniforme y luminoso.",
+    shortDescription:
+      "Maquillaje semipermanente que unifica el tono y da luminosidad a la piel.",
+    price: "$2,500",
     whatsappMessage: "Hola, quisiera información sobre BB Glow.",
   },
   {
@@ -125,8 +127,9 @@ export const services: Service[] = [
     slug: "resurfacing-facial-co2",
     name: "Resurfacing Facial (Láser CO2)",
     category: "faciales",
-    shortDescription: "Tratamiento facial con láser CO2 para renovar la piel.",
-    featured: true,
+    shortDescription:
+      "Tratamiento facial con láser CO2 para renovar y mejorar la calidad de la piel.",
+    price: "$3,000",
     whatsappMessage: "Hola, quisiera información sobre Resurfacing Facial (Láser CO2).",
   },
   {
@@ -134,8 +137,9 @@ export const services: Service[] = [
     slug: "hifu-morpheus",
     name: "HIFU o Morpheus",
     category: "faciales",
-    shortDescription: "Aplicación de calor en tejido profundo con tecnología especializada.",
-    featured: true,
+    shortDescription:
+      "Aplicación de calor en tejido profundo para reafirmar y levantar.",
+    price: "$3,500",
     whatsappMessage: "Hola, quisiera información sobre HIFU o Morpheus.",
   },
   {
@@ -143,8 +147,9 @@ export const services: Service[] = [
     slug: "hydrafacial",
     name: "Hydrafacial",
     category: "faciales",
-    shortDescription: "En una sola sesión se limpia, exfolia e hidrata la piel.",
-    featured: true,
+    shortDescription:
+      "En una sola sesión se limpia, exfolia e hidrata la piel profundamente.",
+    price: "$1,500",
     whatsappMessage: "Hola, quisiera información sobre Hydrafacial.",
   },
   {
@@ -152,7 +157,9 @@ export const services: Service[] = [
     slug: "hollywood-peeling",
     name: "Hollywood Peeling",
     category: "faciales",
-    shortDescription: "Limpieza y aplicación de láser para un aspecto renovado.",
+    shortDescription:
+      "Limpieza profunda + peeling para una piel más luminosa y renovada.",
+    price: "$1,200",
     whatsappMessage: "Hola, quisiera información sobre Hollywood Peeling.",
   },
   {
@@ -186,7 +193,9 @@ export const services: Service[] = [
     slug: "anti-papada",
     name: "Anti-papada",
     category: "corporales",
-    shortDescription: "Tratamiento dirigido a la zona de la papada.",
+    shortDescription:
+      "Ultrasonido focalizado para reducir grasa localizada en la zona de la papada.",
+    price: "$2,500",
     whatsappMessage: "Hola, quisiera información sobre el tratamiento Anti-papada.",
   },
   {
@@ -194,8 +203,9 @@ export const services: Service[] = [
     slug: "paquete-corporal",
     name: "SARENTI Paquete Corporal",
     category: "corporales",
-    shortDescription: "Paquete de tratamientos corporales de Sarenti.",
-    featured: true,
+    shortDescription:
+      "Paquete completo de tratamientos corporales para mejores resultados.",
+    price: "$6,000",
     whatsappMessage: "Hola, quisiera información sobre el Paquete Corporal SARENTI.",
   },
   {
@@ -280,7 +290,6 @@ export const services: Service[] = [
     name: "Masaje Deportivo",
     category: "masajes",
     shortDescription: "Enfocado en la recuperación muscular de deportistas.",
-    featured: true,
     whatsappMessage: "Hola, quisiera información sobre el Masaje Deportivo.",
   },
   {
@@ -305,6 +314,20 @@ export function getServicesByCategory(category: ServiceCategory): Service[] {
   return services.filter((service) => service.category === category);
 }
 
+/** Services shown on the homepage highlight grid, in display order. */
+export const featuredServiceIds = [
+  "camara-hiperbarica",
+  "hifu-morpheus",
+  "resurfacing-facial-co2",
+  "hydrafacial",
+  "sarenti-paquete-corporal",
+  "anti-papada",
+  "bb-glow",
+  "hollywood-peeling",
+];
+
 export function getFeaturedServices(): Service[] {
-  return services.filter((service) => service.featured);
+  return featuredServiceIds.map(
+    (id) => services.find((service) => service.id === id)!,
+  );
 }
