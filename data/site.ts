@@ -11,19 +11,22 @@ export const siteConfig = {
   // WhatsApp number in international format (digits only, no spaces).
   // To change the number, edit ONLY this line.
   whatsappNumber: "522221003094",
-  whatsappDisplay: "+52 222 100 3094",
+  whatsappDisplay: "222 100 3094",
 
   instagramHandle: "@drasarenti",
   instagramUrl: "https://instagram.com/drasarenti",
 
-  hours: "8:00 a.m. – 3:00 p.m.",
+  hours: [
+    "Lunes a viernes: 9:00 a.m. – 5:00 p.m.",
+    "Sábado: 8:00 a.m. – 3:00 p.m.",
+  ],
 
-  // Location is intentionally not public. Shared privately via WhatsApp.
-  locationNotice: "Ubicación disponible al agendar por WhatsApp.",
+  address:
+    "15 de Mayo 15, Col. Francisco I. Madero, 72130 Heroica Puebla de Zaragoza, Pue.",
 
   // TODO: replace with Sarenti's own Google Maps reviews link
   // (Google Business Profile → "Compartir" / "Pedir reseñas").
-  googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Sarenti",
+  googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Sarenti%2C%2015%20de%20Mayo%2015%2C%2072130%20Puebla",
 
   defaultWhatsAppMessage:
     "Hola, vi la página de Sarenti y quisiera agendar una cita.",
