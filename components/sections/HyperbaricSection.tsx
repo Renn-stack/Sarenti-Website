@@ -60,7 +60,8 @@ export default function HyperbaricSection() {
                 Higgsfield-generated cinematic clip, produced using
                 chamber-wide.jpg above as the reference/start frame (see
                 HIGGSFIELD-GENERATED-ASSETS.md). Same real chamber, no
-                fabricated equipment.
+                fabricated equipment. Self-hosted and re-encoded with
+                "faststart" so it plays before fully downloading.
               */}
               <div className="hidden overflow-hidden rounded-xl2 bg-sarenti-light/10 sm:col-span-1 sm:block">
                 <video
@@ -69,6 +70,7 @@ export default function HyperbaricSection() {
                   muted
                   loop
                   playsInline
+                  poster="/media/hyperbaric-detail-poster.webp"
                   aria-hidden="true"
                 >
                   <source src={editorialVideos.hyperbaricDetail} type="video/mp4" />

@@ -32,6 +32,6 @@ export const editorialImages = {
 export const editorialVideos = {
   // Self-hosted (originally hf_20260909_120551_d6372c85-….mp4 on the CDN above).
   heroLoop: "/media/sarenti-hero.mp4",
-  hyperbaricDetail:
-    "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120708_280b7d52-2863-45c3-a694-cb3a4fdc61d5.mp4",
+  // Self-hosted (originally hf_20260909_120708_280b7d52-….mp4 on the CDN above).
+  hyperbaricDetail: "/media/hyperbaric-detail.mp4",
 } as const;
