@@ -120,7 +120,7 @@ Edit `data/faqs.ts` — a simple array of `{ question, answer }`.
 The Testimonios section (`components/sections/TestimonialsSection.tsx`)
 currently shows a short message and a link to Sarenti's Google reviews
 instead of individual testimonials. Update the link via
-`googleReviewsUrl` in `data/site.ts`. Only add real, verified client
+`googleMapsUrl` in `data/site.ts`. Only add real, verified client
 reviews if testimonials are shown on the page again.
 
 ### Update the "Sobre Sarenti" / doctor bio section

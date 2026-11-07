@@ -16,7 +16,7 @@ const infoItems: Array<{
     icon: MapPin,
     label: "Dirección",
     value: [siteConfig.address],
-    href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address)}`,
+    href: siteConfig.googleMapsUrl,
   },
   {
     icon: MessageCircle,
@@ -72,6 +72,19 @@ export default function ContactSection() {
             </div>
           ))}
         </div>
+
+        <FadeIn>
+          <div className="mt-12 overflow-hidden rounded-xl2 shadow-soft">
+            <iframe
+              src={siteConfig.googleMapsEmbedUrl}
+              title="Mapa de ubicación de Sarenti"
+              className="block h-72 w-full border-0 sm:h-96"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </FadeIn>
       </Container>
     </section>
   );

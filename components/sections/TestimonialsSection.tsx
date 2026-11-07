@@ -32,7 +32,7 @@ export default function TestimonialsSection() {
               Google Maps.
             </p>
             <a
-              href={siteConfig.googleReviewsUrl}
+              href={siteConfig.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center justify-center gap-2 rounded-full border-2 border-sarenti-primary px-6 py-3 text-base font-semibold text-sarenti-primary transition-transform duration-200 hover:bg-sarenti-light focus-visible:outline-2 active:scale-[0.98]"
