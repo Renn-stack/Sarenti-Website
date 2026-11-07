@@ -11,15 +11,14 @@ import { editorialVideos } from "@/data/editorial-media";
  * ============================================================
  * HIGGSFIELD ASSET SLOT — Hero cinematic loop
  * ============================================================
- * Currently playing a Higgsfield-generated clip from
- * /data/editorial-media.ts (hosted on Higgsfield's CDN — see
- * HIGGSFIELD-GENERATED-ASSETS.md to download it locally instead).
- *
- * To swap in a different/self-hosted cut, drop files here and update
- * the constants below:
+ * Plays a self-hosted copy of the Higgsfield-generated clip
+ * (re-encoded with "faststart" so playback begins before the whole file
+ * downloads), with a poster frame shown while it loads:
  *   /public/media/sarenti-hero.mp4
- *   /public/media/sarenti-hero.webm
  *   /public/media/sarenti-hero-poster.webp
+ *
+ * To swap in a different cut, replace those files (re-encode with
+ * `ffmpeg -i in.mp4 -an -c:v libx264 -crf 26 -movflags +faststart out.mp4`).
  *
  * See HIGGSFIELD-ASSET-PLAN.md for the exact prompt, aspect ratio,
  * and motion direction for this asset.
@@ -28,8 +27,7 @@ import { editorialVideos } from "@/data/editorial-media";
  * back to a soft brand gradient so nothing ever appears broken.
  * ============================================================
  */
-const HERO_VIDEO_MP4 = editorialVideos.heroLoop || "/media/sarenti-hero.mp4";
-const HERO_VIDEO_WEBM = "/media/sarenti-hero.webm";
+const HERO_VIDEO_MP4 = editorialVideos.heroLoop;
 const HERO_POSTER = "/media/sarenti-hero-poster.webp";
 
 export default function HeroSection() {
@@ -53,11 +51,11 @@ export default function HeroSection() {
           muted
           loop
           playsInline
+          preload="auto"
           poster={HERO_POSTER}
           onError={() => setVideoFailed(true)}
           aria-hidden="true"
         >
-          <source src={HERO_VIDEO_WEBM} type="video/webm" />
           <source src={HERO_VIDEO_MP4} type="video/mp4" />
         </video>
       )}
