@@ -47,10 +47,23 @@ export default function AboutSection() {
           <h2 className="mt-3 font-serif text-3xl leading-tight text-sarenti-ink sm:text-4xl">
             {siteConfig.doctorName}
           </h2>
+          <p className="mt-4 text-lg font-medium text-sarenti-ink/80">
+            Medicina estética y bienestar con atención personalizada
+          </p>
           <p className="mt-5 text-base leading-relaxed text-sarenti-ink/70 sm:text-lg">
-            En Sarenti buscamos ofrecer una atención cercana, profesional y
-            personalizada, orientada al bienestar y a las necesidades de
-            cada persona.
+            Soy la Dra. Gabriela Ponce, fundadora de Sarenti. Mi enfoque
+            combina medicina estética, tecnología y un trato cercano para que
+            cada persona se sienta acompañada durante su proceso.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-sarenti-ink/70 sm:text-lg">
+            En Sarenti priorizamos resultados naturales, seguridad y una
+            experiencia cómoda. Ya sea que busques tratamientos faciales,
+            corporales o el apoyo de la cámara hiperbárica, te brindo una
+            valoración clara y personalizada según tus objetivos.
+          </p>
+          <p className="mt-6 font-serif text-xl leading-snug text-sarenti-ink">
+            Estoy aquí para ayudarte a sentirte y verte mejor, con honestidad
+            y profesionalismo.
           </p>
 
           {credentials.length > 0 && (
@@ -66,7 +79,7 @@ export default function AboutSection() {
             variant="outline"
             className="mt-8"
           >
-            Agendar por WhatsApp
+            Agendar valoración por WhatsApp
           </WhatsAppCTA>
         </FadeIn>
       </Container>
