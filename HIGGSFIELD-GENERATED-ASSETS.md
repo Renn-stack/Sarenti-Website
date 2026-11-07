@@ -5,51 +5,36 @@ This is the record of what was actually generated from
 plan. Everything below is already wired into the site via
 `/data/editorial-media.ts`.
 
-## Important: these are hosted on Higgsfield's CDN today
+## Self-hosted
 
-Each URL below points at Higgsfield's generation CDN
-(`d8j0ntlcm91z4.cloudfront.net`), allowlisted in `next.config.mjs`
-(`images.remotePatterns`). They were generated and wired in from a
-sandboxed session whose outbound network policy blocks that CDN host, so
-the assets could not be downloaded to local files in that session —
-only referenced by URL. **They work correctly for real site visitors**
-(ordinary browsers/deployments aren't subject to that sandbox's
-network policy), but for long-term stability and better performance you
-should self-host them:
+All assets below have been downloaded and are served from `/public`
+(`/public/images/editorial/*.jpg` and `/public/media/*.mp4`), wired in via
+`/data/editorial-media.ts`. The site no longer loads anything from
+Higgsfield's CDN (`d8j0ntlcm91z4.cloudfront.net`).
 
-1. Download each file (commands below).
-2. Save it under the path noted for each asset.
-3. Update the corresponding constant in `/data/editorial-media.ts` to the
-   local path (e.g. `/images/editorial/facial-01.jpg`) instead of the
-   `https://...` URL.
-4. Once nothing in `/data/editorial-media.ts` points at
-   `d8j0ntlcm91z4.cloudfront.net`, remove the `remotePatterns` entry from
-   `next.config.mjs`.
+- Images: original PNGs (1536×2048, ~4 MB each) re-encoded to progressive
+  JPG at 1200×1600, quality 80 (~160–200 KB each). `next/image` then
+  serves AVIF/WebP at the size each layout needs.
+- Videos: re-encoded with H.264 + `-movflags +faststart` (so playback
+  starts before the file finishes downloading), no audio, plus a
+  first-frame WebP poster. Hero: `/media/sarenti-hero.mp4`; hyperbaric
+  detail: `/media/hyperbaric-detail.mp4`.
+
+The original CDN URLs are listed below for reference only; they are tied
+to the Higgsfield account that generated them and may stop working.
 
 ```bash
-# Run from the project root. Creates local copies of every asset below.
-mkdir -p public/images/editorial public/media
-
-curl -L -o public/images/editorial/facial-01.jpg   "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_ed17abbc-9494-405a-82c1-25d5fe6e74e0.png"
-curl -L -o public/images/editorial/facial-02.jpg   "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_72ecd933-7ccd-4f60-96d5-b9032cede8bf.png"
-curl -L -o public/images/editorial/facial-03.jpg   "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120739_ed3daeab-d492-40a8-993e-dee9a939751d.png"
-curl -L -o public/images/editorial/body-01.jpg     "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120547_b1b0c99b-59a3-45ff-92ea-5d7e276d2e79.png"
-curl -L -o public/images/editorial/body-02.jpg     "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_26dba30b-c3c9-4aca-b31f-349225cdcf83.png"
-curl -L -o public/images/editorial/massage-01.jpg  "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120547_bc53383c-6ad2-4991-962b-f9f40c27279f.png"
-curl -L -o public/images/editorial/massage-02.jpg  "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_17c589e7-9569-4a67-b540-15b57e03b1e3.png"
-
-curl -L -o public/media/sarenti-hero.mp4 "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120551_d6372c85-4e54-4366-9aba-1a6a317f53fd.mp4"
-curl -L -o public/media/sarenti-hyperbaric-detail.mp4 "https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120708_280b7d52-2863-45c3-a694-cb3a4fdc61d5.mp4"
+# Original sources (for re-processing only — not used by the site)
+facial-01.jpg   https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_ed17abbc-9494-405a-82c1-25d5fe6e74e0.png
+facial-02.jpg   https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_72ecd933-7ccd-4f60-96d5-b9032cede8bf.png
+facial-03.jpg   https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120739_ed3daeab-d492-40a8-993e-dee9a939751d.png
+body-01.jpg     https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120547_b1b0c99b-59a3-45ff-92ea-5d7e276d2e79.png
+body-02.jpg     https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_26dba30b-c3c9-4aca-b31f-349225cdcf83.png
+massage-01.jpg  https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120547_bc53383c-6ad2-4991-962b-f9f40c27279f.png
+massage-02.jpg  https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120546_17c589e7-9569-4a67-b540-15b57e03b1e3.png
+sarenti-hero.mp4       https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120551_d6372c85-4e54-4366-9aba-1a6a317f53fd.mp4
+hyperbaric-detail.mp4  https://d8j0ntlcm91z4.cloudfront.net/user_3HfcZnXDgT8cqMcDdh49GhdJPHv/hf_20260909_120708_280b7d52-2863-45c3-a694-cb3a4fdc61d5.mp4
 ```
-
-(The downloaded files are PNG-encoded despite the `.jpg` extension used
-above for consistency with the asset plan's naming — re-encode with
-`ImageMagick`/`sharp` if you want true `.jpg` files, or just keep the
-`.png` extension; either works with `next/image`.)
-
-**Note on permanence:** these URLs are tied to the Higgsfield account
-that generated them. Treat them as convenient-but-not-permanent — self-
-host before relying on this site long-term in production.
 
 ## What was generated
 

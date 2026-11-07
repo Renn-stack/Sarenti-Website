@@ -38,6 +38,7 @@ export default function AboutSection() {
               alt="Ambiente cálido y profesional en la clínica Sarenti"
               fill
               className="object-cover"
+              sizes="(min-width: 1024px) 50vw, 100vw"
             />
           </div>
         </FadeIn>
