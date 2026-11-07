@@ -141,24 +141,17 @@ Higgsfield and are wired in via `/data/editorial-media.ts`, used by
 `HeroSection.tsx`, `HyperbaricSection.tsx`, `AboutSection.tsx`, and the
 new `EditorialGallery.tsx` section.
 
-**They currently point at Higgsfield's CDN, not local files.** See
-`HIGGSFIELD-GENERATED-ASSETS.md` for exactly what was generated (prompts,
-models, settings) and the `curl` commands to download each one locally.
-After downloading, update the matching constant in
-`/data/editorial-media.ts` to a local `/images/...` or `/media/...` path,
-and remove the now-unnecessary `images.remotePatterns` entry from
-`next.config.mjs`.
-
-If you regenerate the hero video and want to fall back to local files
-under the original naming from the asset plan instead, drop these in and
-point `editorialVideos.heroLoop` at the mp4 path (the hero component
-falls back to a brand gradient if the video is ever unavailable):
+All of them are self-hosted and optimized:
 
 ```
-/public/media/sarenti-hero.mp4
-/public/media/sarenti-hero.webm
-/public/media/sarenti-hero-poster.webp
+/public/images/editorial/*.jpg        1200x1600 JPG (next/image serves AVIF/WebP)
+/public/media/sarenti-hero.mp4        hero loop (faststart) + sarenti-hero-poster.webp
+/public/media/hyperbaric-detail.mp4   hyperbaric clip (faststart) + hyperbaric-detail-poster.webp
 ```
+
+To replace one, overwrite the file at the same path. See
+`HIGGSFIELD-GENERATED-ASSETS.md` for the prompts, the original source
+URLs and the encoding settings used.
 
 ### Hyperbaric chamber photos
 
