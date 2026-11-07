@@ -24,5 +24,5 @@ export const siteConfig = {
   defaultWhatsAppMessage:
     "Hola, vi la página de Sarenti y quisiera agendar una cita.",
 
-  url: "https://sarenti.example.com", // TODO: replace with the real production domain
+  url: "https://www.sarenti.mx",
 } as const;
