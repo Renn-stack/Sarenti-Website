@@ -1,26 +1,33 @@
-import { Clock, Instagram, MapPin } from "lucide-react";
+import { Clock, MapPin, MessageCircle } from "lucide-react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import WhatsAppCTA from "../ui/WhatsAppCTA";
 import FadeIn from "../ui/FadeIn";
 import { siteConfig } from "@/data/site";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 
-const infoItems = [
+const infoItems: Array<{
+  icon: typeof Clock;
+  label: string;
+  value: readonly string[];
+  href?: string;
+}> = [
+  {
+    icon: MapPin,
+    label: "Dirección",
+    value: [siteConfig.address],
+    href: siteConfig.googleMapsUrl,
+  },
+  {
+    icon: MessageCircle,
+    label: "Teléfono / WhatsApp",
+    value: [siteConfig.whatsappDisplay],
+    href: buildWhatsAppLink(siteConfig.contactWhatsAppMessage),
+  },
   {
     icon: Clock,
     label: "Horario",
     value: siteConfig.hours,
-  },
-  {
-    icon: Instagram,
-    label: "Instagram",
-    value: siteConfig.instagramHandle,
-    href: siteConfig.instagramUrl,
-  },
-  {
-    icon: MapPin,
-    label: "Ubicación",
-    value: siteConfig.locationNotice,
   },
 ];
 
@@ -30,12 +37,12 @@ export default function ContactSection() {
       <Container className="max-w-2xl text-center">
         <SectionHeading
           title="Contacto"
-          description="La forma más rápida de resolver tus dudas y agendar es por WhatsApp."
+          description="La forma más rápida de agendar o resolver tus dudas es por WhatsApp."
         />
 
         <FadeIn>
           <div className="mt-10 flex justify-center">
-            <WhatsAppCTA message={siteConfig.defaultWhatsAppMessage} size="lg">
+            <WhatsAppCTA message={siteConfig.contactWhatsAppMessage} size="lg">
               Agendar por WhatsApp
             </WhatsAppCTA>
           </div>
@@ -53,14 +60,31 @@ export default function ContactSection() {
                   rel="noopener noreferrer"
                   className="text-sm text-sarenti-ink/70 hover:text-sarenti-primary"
                 >
-                  {item.value}
+                  {item.value.join(" ")}
                 </a>
               ) : (
-                <p className="text-sm text-sarenti-ink/70">{item.value}</p>
+                item.value.map((line) => (
+                  <p key={line} className="text-sm text-sarenti-ink/70">
+                    {line}
+                  </p>
+                ))
               )}
             </div>
           ))}
         </div>
+
+        <FadeIn>
+          <div className="mt-12 overflow-hidden rounded-xl2 shadow-soft">
+            <iframe
+              src={siteConfig.googleMapsEmbedUrl}
+              title="Mapa de ubicación de Sarenti"
+              className="block h-72 w-full border-0 sm:h-96"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </FadeIn>
       </Container>
     </section>
   );

@@ -9,12 +9,11 @@ import { editorialVideos } from "@/data/editorial-media";
 const hyperbaricService = services.find((s) => s.id === "camara-hiperbarica")!;
 
 const themes = [
-  "Bienestar general",
-  "Apoyo a la recuperación",
-  "Oxigenación",
-  "Recuperación deportiva",
-  "Apoyo post-operatorio, cuando es médicamente apropiado",
-  "Evaluación individual con la Dra. Gabriela Ponce",
+  "Recuperarse mejor después de un procedimiento o cirugía",
+  "Reducir inflamación y acelerar la cicatrización",
+  "Mejorar su energía y sensación de bienestar",
+  "Apoyar procesos de recuperación deportiva",
+  "Complementar tratamientos estéticos",
 ];
 
 /**
@@ -61,7 +60,8 @@ export default function HyperbaricSection() {
                 Higgsfield-generated cinematic clip, produced using
                 chamber-wide.jpg above as the reference/start frame (see
                 HIGGSFIELD-GENERATED-ASSETS.md). Same real chamber, no
-                fabricated equipment.
+                fabricated equipment. Self-hosted and re-encoded with
+                "faststart" so it plays before fully downloading.
               */}
               <div className="hidden overflow-hidden rounded-xl2 bg-sarenti-light/10 sm:col-span-1 sm:block">
                 <video
@@ -70,6 +70,7 @@ export default function HyperbaricSection() {
                   muted
                   loop
                   playsInline
+                  poster="/media/hyperbaric-detail-poster.webp"
                   aria-hidden="true"
                 >
                   <source src={editorialVideos.hyperbaricDetail} type="video/mp4" />
@@ -89,12 +90,17 @@ export default function HyperbaricSection() {
               Cámara Hiperbárica
             </h2>
             <p className="mt-4 text-lg font-medium text-sarenti-light">
-              Recuperación, oxigenación y bienestar.
+              Oxigenación profunda para recuperar tu cuerpo y sentirte mejor.
             </p>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-white/70">
-              Sesiones en un ambiente de presión controlada, pensadas como
-              apoyo a la recuperación y al bienestar general. Cada caso es
-              diferente.
+              En Sarenti contamos con cámara hiperbárica, un tratamiento que
+              permite respirar oxígeno puro en un ambiente de presión
+              controlada. Esto ayuda a que el oxígeno llegue con mayor
+              eficiencia a tus tejidos, apoyando la recuperación y el
+              bienestar general.
+            </p>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/70">
+              Es un servicio buscado por personas que quieren:
             </p>
 
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -110,8 +116,8 @@ export default function HyperbaricSection() {
             </ul>
 
             <p className="mt-6 rounded-xl2 border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-white/70">
-              Cada caso es diferente. Consulta con la Dra. Gabriela Ponce
-              para saber si este servicio es adecuado para ti.
+              Cada caso es diferente. Por eso la Dra. Gabriela Ponce evalúa si
+              este tratamiento es adecuado para ti.
             </p>
 
             <WhatsAppCTA
