@@ -18,8 +18,8 @@ export default function WhatsAppButton() {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Agendar por WhatsApp"
-      className="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-sarenti-primary text-white shadow-soft transition-transform hover:scale-105 lg:flex"
+      aria-label="Agendar valoración por WhatsApp (se abre en una nueva pestaña)"
+      className="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-sarenti-primary text-white shadow-soft transition-colors hover:bg-sarenti-primary-dark lg:flex"
     >
       <MessageCircle className="h-7 w-7" aria-hidden="true" />
     </a>

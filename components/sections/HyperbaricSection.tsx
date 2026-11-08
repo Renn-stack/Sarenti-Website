@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
 import Container from "../ui/Container";
 import FadeIn from "../ui/FadeIn";
 import WhatsAppCTA from "../ui/WhatsAppCTA";
@@ -17,9 +17,10 @@ const themes = [
 ];
 
 /**
- * Flagship section — deliberately given more visual weight than any
- * other service section (larger imagery, dedicated background, its own
- * generous spacing).
+ * Flagship service deep-dive. Sits right after the three highlighted
+ * treatments on a soft blush background (previously a full dark block
+ * that competed with the hero) so it reads as "more detail", not as a
+ * second hero.
  *
  * Photos below are REAL photographs of Sarenti's hyperbaric chamber.
  * Do not replace them with AI-generated equipment. If Higgsfield is
@@ -30,7 +31,7 @@ export default function HyperbaricSection() {
   return (
     <section
       id="camara-hiperbarica"
-      className="bg-sarenti-ink py-20 sm:py-28"
+      className="bg-sarenti-blush py-16 sm:py-24"
       aria-labelledby="hyperbaric-heading"
     >
       <Container>
@@ -43,8 +44,8 @@ export default function HyperbaricSection() {
                   alt="Cámara hiperbárica de Sarenti en sala de tratamiento"
                   width={1200}
                   height={900}
-                  className="h-full w-full object-cover"
-                  priority
+                  sizes="(min-width: 1024px) 560px, 100vw"
+                  className="aspect-[4/3] h-full w-full object-cover"
                 />
               </div>
               <div className="col-span-2 overflow-hidden rounded-xl2 sm:col-span-1">
@@ -53,7 +54,8 @@ export default function HyperbaricSection() {
                   alt="Panel de control de la cámara hiperbárica de Sarenti"
                   width={800}
                   height={800}
-                  className="h-full w-full object-cover"
+                  sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"
+                  className="aspect-square h-full w-full object-cover"
                 />
               </div>
               {/*
@@ -63,13 +65,14 @@ export default function HyperbaricSection() {
                 fabricated equipment. Self-hosted and re-encoded with
                 "faststart" so it plays before fully downloading.
               */}
-              <div className="hidden overflow-hidden rounded-xl2 bg-sarenti-light/10 sm:col-span-1 sm:block">
+              <div className="hidden overflow-hidden rounded-xl2 bg-sarenti-light sm:col-span-1 sm:block">
                 <video
                   className="h-full w-full object-cover motion-reduce:hidden"
                   autoPlay
                   muted
                   loop
                   playsInline
+                  preload="none"
                   poster="/media/hyperbaric-detail-poster.webp"
                   aria-hidden="true"
                 >
@@ -80,34 +83,32 @@ export default function HyperbaricSection() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <p className="kicker text-sm text-sarenti-secondary">
-              Servicio insignia
-            </p>
+            <p className="kicker">Servicio insignia</p>
             <h2
               id="hyperbaric-heading"
-              className="mt-3 font-serif text-3xl leading-tight text-white sm:text-5xl"
+              className="mt-3 font-serif text-[2rem] leading-[1.15] tracking-[-0.01em] text-sarenti-ink sm:text-[2.6rem]"
             >
               Cámara Hiperbárica
             </h2>
-            <p className="mt-4 text-lg font-medium text-sarenti-light">
+            <p className="mt-4 text-lg font-medium text-sarenti-primary-dark">
               Oxigenación profunda para recuperar tu cuerpo y sentirte mejor.
             </p>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/70">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-sarenti-muted">
               En Sarenti contamos con cámara hiperbárica, un tratamiento que
               permite respirar oxígeno puro en un ambiente de presión
               controlada. Esto ayuda a que el oxígeno llegue con mayor
               eficiencia a tus tejidos, apoyando la recuperación y el
               bienestar general.
             </p>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/70">
+            <p className="mt-4 max-w-lg text-base font-medium leading-relaxed text-sarenti-ink">
               Es un servicio buscado por personas que quieren:
             </p>
 
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {themes.map((theme) => (
-                <li key={theme} className="flex items-start gap-2 text-sm text-white/80">
-                  <CheckCircle2
-                    className="mt-0.5 h-5 w-5 shrink-0 text-sarenti-secondary"
+                <li key={theme} className="flex items-start gap-2 text-sm leading-relaxed text-sarenti-ink">
+                  <Check
+                    className="mt-0.5 h-4 w-4 shrink-0 text-sarenti-primary"
                     aria-hidden="true"
                   />
                   <span>{theme}</span>
@@ -115,17 +116,18 @@ export default function HyperbaricSection() {
               ))}
             </ul>
 
-            <p className="mt-6 rounded-xl2 border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-white/70">
+            <p className="mt-6 border-l-2 border-sarenti-primary pl-4 text-sm leading-relaxed text-sarenti-muted">
               Cada caso es diferente. Por eso la Dra. Gabriela Ponce evalúa si
               este tratamiento es adecuado para ti.
             </p>
 
             <WhatsAppCTA
               message={hyperbaricService.whatsappMessage}
+              variant="outline"
               size="lg"
-              className="mt-8"
+              className="mt-8 w-full sm:w-auto"
             >
-              Consultar Cámara Hiperbárica por WhatsApp
+              Consultar cámara hiperbárica
             </WhatsAppCTA>
           </FadeIn>
         </div>

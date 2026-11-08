@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -24,7 +24,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: "Sarenti | Cámara Hiperbárica y Medicina Estética",
   description:
-    "Conoce Sarenti, clínica de medicina estética con cámara hiperbárica, tratamientos faciales, corporales y de bienestar. Agenda tu cita por WhatsApp.",
+    "Sarenti, clínica de medicina estética en Puebla con la Dra. Gabriela Ponce: cámara hiperbárica, tratamientos faciales, corporales y de bienestar. Agenda tu valoración por WhatsApp.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Sarenti | Cámara Hiperbárica y Medicina Estética",
     description:
@@ -50,8 +53,16 @@ const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   name: siteConfig.name,
+  url: siteConfig.url,
+  image: `${siteConfig.url}/images/hyperbaric/chamber-wide.jpg`,
+  logo: `${siteConfig.url}/images/brand/sarenti-logo.png`,
+  areaServed: "Puebla, México",
+  founder: {
+    "@type": "Person",
+    name: siteConfig.doctorName,
+  },
   description:
-    "Clínica de medicina estética con cámara hiperbárica, tratamientos faciales, corporales y de bienestar.",
+    "Clínica de medicina estética en Puebla con cámara hiperbárica, tratamientos faciales, corporales y de bienestar.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "15 de Mayo 15, Col. Francisco I. Madero",
@@ -65,6 +76,10 @@ const localBusinessJsonLd = {
   sameAs: [siteConfig.instagramUrl],
 };
 
+export const viewport: Viewport = {
+  themeColor: "#FCFAF8",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -72,14 +87,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${editorialFont.variable} ${bodyFont.variable}`}>
-      <body className="min-h-screen bg-white font-sans text-sarenti-ink">
+      <body className="min-h-screen bg-sarenti-paper font-sans text-sarenti-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-sarenti-primary focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-sarenti-primary focus:px-5 focus:py-3 focus:text-white"
         >
           Saltar al contenido principal
         </a>

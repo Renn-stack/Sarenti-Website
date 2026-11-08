@@ -7,17 +7,29 @@
   --sarenti-primary: #902376;
   --sarenti-secondary: #c671a5;
   --sarenti-light: #eed6e8;
-  --sarenti-ink: #221b20;
-  --sarenti-paper: #ffffff;
+  --sarenti-ink: #2a2328;
+  --sarenti-paper: #fcfaf8;
+  /* Focus ring colour; dark sections override it with .on-dark */
+  --focus-ring: var(--sarenti-primary);
 }
 
-* {
+.on-dark {
+  --focus-ring: #ffffff;
+}
+
+html {
   scroll-behavior: smooth;
+  /* Anchor targets land below the sticky header */
+  scroll-padding-top: 5.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  html {
     scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -35,21 +47,23 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Visible focus states for keyboard navigation */
+/* Visible focus states for keyboard navigation (WCAG 2.4.7 / 2.4.11) */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
-summary:focus-visible {
-  outline: 2px solid var(--sarenti-primary);
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
-/* Utility for the eyebrow / kicker labels used across sections */
+/* Eyebrow / kicker labels used across sections */
 .kicker {
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sarenti-primary);
 }

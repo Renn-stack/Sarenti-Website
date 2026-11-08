@@ -12,11 +12,15 @@ const config: Config = {
     extend: {
       colors: {
         sarenti: {
-          primary: "#902376",
-          secondary: "#C671A5",
-          light: "#EED6E8",
-          ink: "#221B20",
-          paper: "#FFFFFF",
+          primary: "#902376", // morado ciruela — color principal
+          "primary-dark": "#6F1A5B", // hover / texto sobre rosa
+          secondary: "#C671A5", // acento; solo sobre fondos oscuros
+          light: "#EED6E8", // rosa claro de marca
+          blush: "#F8EEF4", // rosa muy claro para fondos de sección
+          ink: "#2A2328", // gris oscuro para títulos y texto
+          muted: "#5E5560", // texto secundario (≥ 7:1 sobre paper)
+          line: "#E8DFE4", // divisores y bordes finos
+          paper: "#FCFAF8", // blanco cálido de fondo
         },
       },
       fontFamily: {
@@ -30,8 +34,7 @@ const config: Config = {
         xl2: "1.25rem",
       },
       boxShadow: {
-        soft: "0 8px 30px -12px rgba(34, 27, 32, 0.15)",
-        card: "0 4px 20px -8px rgba(144, 35, 118, 0.15)",
+        soft: "0 12px 32px -20px rgba(42, 35, 40, 0.25)",
       },
       keyframes: {
         fadeUp: {
@@ -40,7 +43,7 @@ const config: Config = {
         },
       },
       animation: {
-        fadeUp: "fadeUp 0.6s ease-out forwards",
+        fadeUp: "fadeUp 0.6s ease-out both",
       },
     },
   },

@@ -30,6 +30,12 @@ export interface Service {
   price?: string;
   /** Message pre-filled into the WhatsApp chat when this service's CTA is used. */
   whatsappMessage: string;
+  /**
+   * Optional AUTHENTIC photo of this treatment at Sarenti (path under
+   * /public). Only real photos of the clinic/equipment — never stock or
+   * AI-generated patients. Cards render without an image when absent.
+   */
+  image?: { src: string; alt: string };
 }
 
 export const categoryLabels: Record<ServiceCategory, string> = {
@@ -60,6 +66,10 @@ export const services: Service[] = [
     price: "Consultar",
     whatsappMessage:
       "Hola, vi la página de Sarenti y quisiera información sobre la Cámara Hiperbárica.",
+    image: {
+      src: "/images/hyperbaric/chamber-wide.jpg",
+      alt: "Cámara hiperbárica de Sarenti en su sala de tratamiento",
+    },
   },
 
   // ---- Faciales ----
@@ -314,7 +324,24 @@ export function getServicesByCategory(category: ServiceCategory): Service[] {
   return services.filter((service) => service.category === category);
 }
 
-/** Services shown on the homepage highlight grid, in display order. */
+/**
+ * The three treatments highlighted first on the homepage. Kept short on
+ * purpose: three clear options are easier to choose from than eight.
+ * Everything else stays one click away in the full catalogue (#catalogo).
+ */
+export const homepageHighlightIds = [
+  "camara-hiperbarica",
+  "hifu-morpheus",
+  "hydrafacial",
+];
+
+export function getHomepageHighlights(): Service[] {
+  return homepageHighlightIds.map(
+    (id) => services.find((service) => service.id === id)!,
+  );
+}
+
+/** Broader curated list (previous homepage grid), kept for reuse. */
 export const featuredServiceIds = [
   "camara-hiperbarica",
   "hifu-morpheus",

@@ -3,84 +3,132 @@ import Container from "../ui/Container";
 import FadeIn from "../ui/FadeIn";
 import WhatsAppCTA from "../ui/WhatsAppCTA";
 import { siteConfig } from "@/data/site";
-import { editorialImages } from "@/data/editorial-media";
 
 /**
- * TODO: Replace this placeholder content with verified professional
- * information provided by Sarenti (training, certifications, areas of
- * expertise). Do NOT invent credentials, degrees, or specialties beyond
- * "Dra. Gabriela Ponce" in the meantime.
+ * "Conoce a la doctora" — third level of the hierarchy.
  *
- * The `credentials` array below is intentionally empty/generic so real
- * items can be dropped in later without restructuring the component.
+ * PHOTO: no authentic photo of Dra. Gabriela Ponce exists in the repo
+ * yet. The previous version used an AI-generated woman next to her name,
+ * which visitors could mistake for the doctor — so it was replaced by a
+ * brand panel. To add the real portrait, drop it at
+ * /public/images/brand/dra-gabriela-ponce.jpg and set DOCTOR_PHOTO below.
+ *
+ * CREDENTIALS: only add VERIFIED items supplied by Sarenti (cédula
+ * profesional, especialidad, certificaciones). Nothing is rendered while
+ * the list is empty — never invent credentials.
  */
+const DOCTOR_PHOTO: { src: string; alt: string } | null = null;
+// e.g. { src: "/images/brand/dra-gabriela-ponce.jpg", alt: "Dra. Gabriela Ponce en su consultorio de Sarenti" }
+
 const credentials: string[] = [
-  // TODO: e.g. "Cédula profesional #XXXXXX"
-  // TODO: e.g. "Especialidad en ..."
-  // TODO: e.g. "Certificación en ..."
+  // TODO (pendiente de confirmación): "Cédula profesional ..."
+  // TODO (pendiente de confirmación): "Especialidad / certificación en ..."
+];
+
+// Principles taken from the doctor's own existing copy below.
+const principles = [
+  { title: "Valoración clara", text: "Personalizada según tus objetivos." },
+  { title: "Seguridad", text: "Cada caso se evalúa antes de tratar." },
+  { title: "Trato cercano", text: "Acompañamiento durante tu proceso." },
 ];
 
 export default function AboutSection() {
   return (
-    <section id="sobre-sarenti" className="py-20 sm:py-28">
-      <Container className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <FadeIn>
-          {/*
-            Higgsfield-generated editorial image (see
-            HIGGSFIELD-GENERATED-ASSETS.md). This is a generic,
-            non-identifiable wellness image used for atmosphere only —
-            it does not depict Dra. Gabriela Ponce or any real patient,
-            hence the neutral alt text below.
-          */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl2 bg-sarenti-light">
-            <Image
-              src={editorialImages.facial03}
-              alt="Ambiente cálido y profesional en la clínica Sarenti"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
+    <section
+      id="sobre-sarenti"
+      aria-labelledby="about-heading"
+      className="py-16 sm:py-24"
+    >
+      <Container className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+        <FadeIn className="lg:col-span-5">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[1.75rem] bg-sarenti-blush lg:max-w-none">
+            {DOCTOR_PHOTO ? (
+              <Image
+                src={DOCTOR_PHOTO.src}
+                alt={DOCTOR_PHOTO.alt}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+              />
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center gap-6 p-10 text-center">
+                <Image
+                  src="/images/brand/sarenti-logo.png"
+                  alt=""
+                  width={531}
+                  height={490}
+                  className="h-auto w-40 sm:w-48"
+                  sizes="192px"
+                />
+                <p className="font-serif text-xl text-sarenti-primary-dark">
+                  {siteConfig.doctorName}
+                </p>
+              </div>
+            )}
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.1}>
-          <p className="kicker text-sm">Sobre Sarenti</p>
-          <h2 className="mt-3 font-serif text-3xl leading-tight text-sarenti-ink sm:text-4xl">
+        <FadeIn delay={0.1} className="lg:col-span-7">
+          <p className="kicker">Conoce a la doctora</p>
+          <h2
+            id="about-heading"
+            className="mt-3 font-serif text-[2rem] leading-[1.15] tracking-[-0.01em] text-sarenti-ink sm:text-[2.6rem]"
+          >
             {siteConfig.doctorName}
           </h2>
-          <p className="mt-4 text-lg font-medium text-sarenti-ink/80">
-            Medicina estética y bienestar con atención personalizada
-          </p>
-          <p className="mt-5 text-base leading-relaxed text-sarenti-ink/70 sm:text-lg">
-            Soy la Dra. Gabriela Ponce, fundadora de Sarenti. Mi enfoque
-            combina medicina estética, tecnología y un trato cercano para que
-            cada persona se sienta acompañada durante su proceso.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-sarenti-ink/70 sm:text-lg">
-            En Sarenti priorizamos resultados naturales, seguridad y una
-            experiencia cómoda. Ya sea que busques tratamientos faciales,
-            corporales o el apoyo de la cámara hiperbárica, te brindo una
-            valoración clara y personalizada según tus objetivos.
-          </p>
-          <p className="mt-6 font-serif text-xl leading-snug text-sarenti-ink">
-            Estoy aquí para ayudarte a sentirte y verte mejor, con honestidad
-            y profesionalismo.
+          <p className="mt-2 text-base font-medium text-sarenti-primary-dark sm:text-lg">
+            Fundadora de Sarenti · Medicina estética y bienestar
           </p>
 
+          <div className="mt-6 max-w-xl space-y-4 text-base leading-relaxed text-sarenti-muted sm:text-lg">
+            <p>
+              Soy la Dra. Gabriela Ponce, fundadora de Sarenti. Mi enfoque
+              combina medicina estética, tecnología y un trato cercano para que
+              cada persona se sienta acompañada durante su proceso.
+            </p>
+            <p>
+              En Sarenti priorizamos resultados naturales, seguridad y una
+              experiencia cómoda. Ya sea que busques tratamientos faciales,
+              corporales o el apoyo de la cámara hiperbárica, te brindo una
+              valoración clara y personalizada según tus objetivos.
+            </p>
+          </div>
+
+          <blockquote className="mt-8 max-w-xl border-l-2 border-sarenti-primary pl-5 font-serif text-xl leading-snug text-sarenti-ink sm:text-2xl">
+            “Estoy aquí para ayudarte a sentirte y verte mejor, con honestidad y
+            profesionalismo.”
+          </blockquote>
+
           {credentials.length > 0 && (
-            <ul className="mt-6 space-y-2 text-sm text-sarenti-ink/70">
-              {credentials.map((credential) => (
-                <li key={credential}>{credential}</li>
-              ))}
-            </ul>
+            <div className="mt-8">
+              <h3 className="text-sm font-semibold text-sarenti-ink">
+                Formación y credenciales
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm text-sarenti-muted">
+                {credentials.map((credential) => (
+                  <li key={credential}>{credential}</li>
+                ))}
+              </ul>
+            </div>
           )}
+
+          <dl className="mt-8 grid max-w-xl gap-5 border-t border-sarenti-line pt-6 sm:grid-cols-3">
+            {principles.map((item) => (
+              <div key={item.title}>
+                <dt className="text-sm font-semibold text-sarenti-ink">{item.title}</dt>
+                <dd className="mt-1 text-sm leading-relaxed text-sarenti-muted">
+                  {item.text}
+                </dd>
+              </div>
+            ))}
+          </dl>
 
           <WhatsAppCTA
             message={siteConfig.defaultWhatsAppMessage}
-            variant="outline"
-            className="mt-8"
+            size="lg"
+            className="mt-8 w-full sm:w-auto"
           >
-            Agendar valoración por WhatsApp
+            Agendar valoración con la doctora
           </WhatsAppCTA>
         </FadeIn>
       </Container>
