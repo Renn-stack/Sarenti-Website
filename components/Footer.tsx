@@ -5,12 +5,12 @@ import { siteConfig } from "@/data/site";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 const footerLinks = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Cámara Hiperbárica", href: "#camara-hiperbarica" },
-  { label: "Tratamientos", href: "#tratamientos" },
-  { label: "Sobre Sarenti", href: "#sobre-sarenti" },
-  { label: "Preguntas frecuentes", href: "#faq" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/#inicio" },
+  { label: "Cámara Hiperbárica", href: "/#camara-hiperbarica" },
+  { label: "Tratamientos", href: "/#tratamientos" },
+  { label: "Sobre Sarenti", href: "/#sobre-sarenti" },
+  { label: "Preguntas frecuentes", href: "/#faq" },
+  { label: "Contacto", href: "/#contacto" },
 ];
 
 export default function Footer() {

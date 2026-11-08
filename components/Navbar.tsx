@@ -2,18 +2,19 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Container from "./ui/Container";
 import WhatsAppCTA from "./ui/WhatsAppCTA";
 import { siteConfig } from "@/data/site";
 
 const navItems = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Cámara Hiperbárica", href: "#camara-hiperbarica" },
-  { label: "Tratamientos", href: "#tratamientos" },
-  { label: "Sobre Sarenti", href: "#sobre-sarenti" },
-  { label: "Preguntas frecuentes", href: "#faq" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/#inicio" },
+  { label: "Cámara Hiperbárica", href: "/#camara-hiperbarica" },
+  { label: "Tratamientos", href: "/#tratamientos" },
+  { label: "Sobre Sarenti", href: "/#sobre-sarenti" },
+  { label: "Preguntas frecuentes", href: "/#faq" },
+  { label: "Contacto", href: "/#contacto" },
 ];
 
 export default function Navbar() {
@@ -22,7 +23,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-sarenti-ink/5 bg-white/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between sm:h-20">
-        <a href="#inicio" className="flex items-center">
+        <Link href="/#inicio" className="flex items-center">
           <Image
             src="/images/brand/sarenti-icon.png"
             alt={siteConfig.name}
@@ -31,7 +32,7 @@ export default function Navbar() {
             className="h-10 w-auto sm:h-11"
             priority
           />
-        </a>
+        </Link>
 
         <nav aria-label="Navegación principal" className="hidden items-center gap-8 lg:flex">
           {navItems.map((item) => (
